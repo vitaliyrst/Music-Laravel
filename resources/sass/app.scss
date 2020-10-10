@@ -1,0 +1,75 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background: white;
+  font-family: sans-serif;
+}
+
+.jumbotron {
+  background-image: url(/storage/main/jumbotron.jpg);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 200px;
+}
+
+.group-img {
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 5px;
+
+}
+
+.album-img {
+  display: inline-block;
+}
+
+.admin-group-img {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 20px;
+}
+
+.course-img {
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+  max-width: 30px;
+  max-height: 15px;
+}
+
+.weather-img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.edit-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.btn-1 {
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
