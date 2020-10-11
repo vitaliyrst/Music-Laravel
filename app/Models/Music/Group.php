@@ -2,19 +2,22 @@
 
 namespace App\Models\Music;
 
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Music\Group
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Group query()
+ * @method static Builder|Group newModelQuery()
+ * @method static Builder|Group newQuery()
+ * @method static Builder|Group query()
  * @mixin \Eloquent
  * @property int $id
  * @property string $title
@@ -22,23 +25,24 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string|null $cover
  * @property int $created_user_id
  * @property string $slug
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Music\Album[] $album
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Album[] $album
  * @property-read int|null $album_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Music\Singer[] $singer
+ * @property-read Collection|Singer[] $singer
  * @property-read int|null $singer_count
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Group findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCover($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
+ * @property-read User $user
+ * @method static Builder|Group findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Group whereCover($value)
+ * @method static Builder|Group whereCreatedAt($value)
+ * @method static Builder|Group whereCreatedUserId($value)
+ * @method static Builder|Group whereDescription($value)
+ * @method static Builder|Group whereId($value)
+ * @method static Builder|Group whereSlug($value)
+ * @method static Builder|Group whereTitle($value)
+ * @method static Builder|Group whereUpdatedAt($value)
  */
+
 class Group extends Model
 {
     use HasFactory, Sluggable;

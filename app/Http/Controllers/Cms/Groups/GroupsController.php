@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Cms\Groups;
 use App\Http\Controllers\Cms\BaseController;
 use App\Http\Requests\Group\StoreGroupRequest;
 use App\Http\Requests\Group\UpdateGroupRequest;
-use App\Models\Music\Album;
 use App\Models\Music\Group;
 use App\Services\Groups\GroupsService;
 use Illuminate\Contracts\Foundation\Application;
@@ -56,11 +55,8 @@ class GroupsController extends BaseController
     {
         $data = $request->getFormData();
         $store = $this->groupsService->storeGroup($data);
-        $album = new Album($data);
-        $album->create();
-        $album->update()->where('id', $id);
 
-        if ($store) {
+        if (isset($store)) {
             return redirect()->route('cms.music.groups.create')
                 ->with(['success' => Auth::user()->name . ', группа добавлена!']);
         } else {
@@ -103,7 +99,7 @@ class GroupsController extends BaseController
     {
         $data = $request->getFormData();
         $update = $this->groupsService->updateGroup($group, $data);
-        if ($update) {
+        if (isset($update)) {
             return redirect()->route('cms.music.groups.edit', $group->id)
                 ->with(['success' => Auth::user()->name . ', группа обновлена!']);
         } else {
@@ -122,7 +118,7 @@ class GroupsController extends BaseController
     public function destroy($id)
     {
         $destroy = $this->groupsService->destroyGroup($id);
-        if ($destroy) {
+        if ($destroy == 1) {
             return redirect()->route('cms.music.groups.index')
                 ->with(['success' => Auth::user()->name . ', группа удалена!']);
         } else {

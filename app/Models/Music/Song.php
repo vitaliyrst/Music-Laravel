@@ -2,17 +2,20 @@
 
 namespace App\Models\Music;
 
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Music\Song
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Song newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Song newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Song query()
+ * @method static Builder|Song newModelQuery()
+ * @method static Builder|Song newQuery()
+ * @method static Builder|Song query()
  * @mixin \Eloquent
  * @property int $id
  * @property string $title
@@ -22,22 +25,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $created_user_id
  * @property string $slug
  * @property string|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Music\Album $album
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Song findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereAlbumId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereCreatedUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereDuration($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereSongNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Song whereUpdatedAt($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Album $album
+ * @property-read User $user
+ * @method static Builder|Song findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Song whereAlbumId($value)
+ * @method static Builder|Song whereCreatedAt($value)
+ * @method static Builder|Song whereCreatedUserId($value)
+ * @method static Builder|Song whereDeletedAt($value)
+ * @method static Builder|Song whereDuration($value)
+ * @method static Builder|Song whereId($value)
+ * @method static Builder|Song whereSlug($value)
+ * @method static Builder|Song whereSongNumber($value)
+ * @method static Builder|Song whereTitle($value)
+ * @method static Builder|Song whereUpdatedAt($value)
  */
+
 class Song extends Model
 {
     use HasFactory, Sluggable;

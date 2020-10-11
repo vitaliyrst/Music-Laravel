@@ -2,18 +2,37 @@
 
 namespace App\Services\Groups\Repositories;
 
-use App\Models\Music\Album;
 use App\Models\Music\Group;
+use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * Interface GroupRepositoryInterface
+ * @package App\Services\Groups\Repositories
+ */
 interface GroupRepositoryInterface
 {
-    public function find(int $id);
+    /**
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
+    public function search(int $perPage): LengthAwarePaginator;
 
-    public function search(int $perPage);
-
+    /**
+     * @param array $data
+     * @return Group
+     */
     public function createFromArray(array $data): Group;
 
-    public function updateFromArray(Group $group, array $data);
+    /**
+     * @param Group $group
+     * @param array $data
+     * @return Group
+     */
+    public function updateFromArray(Group $group, array $data): Group;
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function destroy(int $id);
 }

@@ -13,8 +13,6 @@ class StoreAlbumRequest extends BaseFormRequest
      */
     public function authorize()
     {
-        /*$album = Album::find($this->route('cms.music.albums.store'));
-        return $album && $this->user()->can('store', $album);*/
         return true;
     }
 

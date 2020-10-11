@@ -2,17 +2,20 @@
 
 namespace App\Models\Music;
 
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Music\Singer
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Singer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Singer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Singer query()
+ * @method static Builder|Singer newModelQuery()
+ * @method static Builder|Singer newQuery()
+ * @method static Builder|Singer query()
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
@@ -23,23 +26,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $created_user_id
  * @property string $slug
  * @property string|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Music\Group $group
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Singer findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereCover($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereCreatedUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereGroupId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer wherePosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Singer whereUpdatedAt($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Group $group
+ * @property-read User $user
+ * @method static Builder|Singer findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Singer whereCover($value)
+ * @method static Builder|Singer whereCreatedAt($value)
+ * @method static Builder|Singer whereCreatedUserId($value)
+ * @method static Builder|Singer whereDeletedAt($value)
+ * @method static Builder|Singer whereDescription($value)
+ * @method static Builder|Singer whereGroupId($value)
+ * @method static Builder|Singer whereId($value)
+ * @method static Builder|Singer whereName($value)
+ * @method static Builder|Singer wherePosition($value)
+ * @method static Builder|Singer whereSlug($value)
+ * @method static Builder|Singer whereUpdatedAt($value)
  */
+
 class Singer extends Model
 {
     use HasFactory, Sluggable;

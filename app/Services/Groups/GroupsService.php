@@ -1,15 +1,16 @@
 <?php
 
-
 namespace App\Services\Groups;
-
 
 use App\Models\Music\Group;
 use App\Services\Groups\Handlers\CreateGroupHandler;
 use App\Services\Groups\Handlers\UpdateGroupHandler;
 use App\Services\Groups\Repositories\GroupRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class GroupsService
+ * @package App\Services\Groups
+ */
 class GroupsService
 {
     /**
@@ -25,6 +26,12 @@ class GroupsService
      */
     private $updateGroupHandler;
 
+    /**
+     * GroupsService constructor.
+     * @param GroupRepositoryInterface $groupRepository
+     * @param CreateGroupHandler $createGroupHandler
+     * @param UpdateGroupHandler $updateGroupHandler
+     */
     public function __construct(
         GroupRepositoryInterface $groupRepository,
         CreateGroupHandler $createGroupHandler,
@@ -36,26 +43,38 @@ class GroupsService
         $this->updateGroupHandler = $updateGroupHandler;
     }
 
-    public function findGroup(int $id)
-    {
-        return $this->groupRepository->find($id);
-    }
-
+    /**
+     * @param $perPage
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
     public function searchGroups($perPage)
     {
         return $this->groupRepository->search($perPage);
     }
 
+    /**
+     * @param array $data
+     * @return Group
+     */
     public function storeGroup(array $data)
     {
         return $this->createGroupHandler->handle($data);
     }
 
+    /**
+     * @param Group $group
+     * @param array $data
+     * @return Group
+     */
     public function updateGroup(Group $group, array $data)
     {
         return $this->updateGroupHandler->handle($group, $data);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function destroyGroup($id)
     {
         return $this->groupRepository->destroy($id);

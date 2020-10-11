@@ -16,7 +16,7 @@ class CreateSingersTable extends Migration
         Schema::create('singers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->string('position', 200);
+            $table->string('position', 200)->nullable();
             $table->text('description')->nullable();
             $table->text('cover')->nullable();
             $table->integer('group_id');

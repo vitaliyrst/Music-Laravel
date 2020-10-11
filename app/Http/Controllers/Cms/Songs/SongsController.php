@@ -3,17 +3,13 @@
 namespace App\Http\Controllers\Cms\Songs;
 
 use App\Http\Controllers\Cms\BaseController;
-use App\Http\Requests\Album\StoreAlbumRequest;
 use App\Http\Requests\Song\StoreSongRequest;
 use App\Http\Requests\Song\UpdateSongRequest;
-use App\Models\Music\Album;
-use App\Models\Music\Group;
 use App\Models\Music\Song;
 use App\Services\Songs\SongsService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -63,7 +59,7 @@ class SongsController extends BaseController
     {
         $data = $request->getFormData();
         $store = $this->songsService->storeAlbum($data);
-        if ($store) {
+        if (isset($store)) {
             return redirect()->route('cms.music.songs.create')
                 ->with(['success' => Auth::user()->name . ', трек добавлен!']);
         } else {
@@ -77,7 +73,7 @@ class SongsController extends BaseController
      * Display the specified resource.
      *
      * @param Song $song
-     * @return Response
+     * @return void
      */
     public function show(Song $song)
     {
@@ -106,10 +102,9 @@ class SongsController extends BaseController
      */
     public function update(UpdateSongRequest $request, Song $song)
     {
-        $album = Album::where('id', $song->album_id)->get();
         $data = $request->getFormData();
         $update = $this->songsService->updateSong($song, $data);
-        if ($update) {
+        if (isset($update)) {
             return redirect()->route('cms.music.songs.edit', $song->id)
                 ->with(['success' => Auth::user()->name . ', трек обновлен!']);
         } else {
@@ -128,7 +123,7 @@ class SongsController extends BaseController
     public function destroy($id)
     {
         $destroy = $this->songsService->destroySong($id);
-        if ($destroy) {
+        if ($destroy == 1) {
             return redirect()->route('cms.music.songs.index')
                 ->with(['success' => Auth::user()->name . ', трек удален!']);
         } else {

@@ -7,6 +7,10 @@ use App\Services\Singers\Handlers\CreateSingerHandler;
 use App\Services\Singers\Handlers\UpdateSingerHandler;
 use App\Services\Singers\Repositories\SingerRepositoryInterface;
 
+/**
+ * Class SingersService
+ * @package App\Services\Singers
+ */
 class SingersService
 {
     /**
@@ -22,6 +26,12 @@ class SingersService
      */
     private $updateSingerHandler;
 
+    /**
+     * SingersService constructor.
+     * @param SingerRepositoryInterface $singerRepository
+     * @param CreateSingerHandler $createSingerHandler
+     * @param UpdateSingerHandler $updateSingerHandler
+     */
     public function __construct(
         SingerRepositoryInterface $singerRepository,
         CreateSingerHandler $createSingerHandler,
@@ -33,26 +43,37 @@ class SingersService
         $this->updateSingerHandler = $updateSingerHandler;
     }
 
-    public function findSinger(int $id)
-    {
-        return $this->singerRepository->find($id);
-    }
-
+    /**
+     * @param array $data
+     * @return Singer
+     */
     public function storeSinger(array $data)
     {
         return $this->createSingerHandler->handle($data);
     }
 
+    /**
+     * @param Singer $singer
+     * @param array $data
+     * @return Singer
+     */
     public function updateSinger(Singer $singer, array $data)
     {
         return $this->updateSingerHandler->handle($singer, $data);
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function searchAllGroups()
     {
         return $this->singerRepository->getGroups();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function destroySinger($id)
     {
         return $this->singerRepository->destroy($id);

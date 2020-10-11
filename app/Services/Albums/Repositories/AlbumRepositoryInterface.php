@@ -5,15 +5,33 @@ namespace App\Services\Albums\Repositories;
 use App\Models\Music\Album;
 use Illuminate\Support\Collection;
 
+/**
+ * Interface AlbumRepositoryInterface
+ * @package App\Services\Albums\Repositories
+ */
 interface AlbumRepositoryInterface
 {
-    public function find(int $id);
-
+    /**
+     * @return Collection
+     */
     public function getGroups(): Collection;
 
+    /**
+     * @param array $data
+     * @return Album
+     */
     public function createFromArray(array $data): Album;
 
-    public function updateFromArray(Album $album, array $data);
+    /**
+     * @param Album $album
+     * @param array $data
+     * @return Album
+     */
+    public function updateFromArray(Album $album, array $data): Album;
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function destroy(int $id);
 }

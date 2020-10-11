@@ -7,7 +7,6 @@ use App\Models\Music\Group;
 use App\Models\Music\Singer;
 use App\Services\Groups\Repositories\GroupRepositoryInterface;
 
-
 class GroupsController extends Controller
 {
     /**

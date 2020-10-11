@@ -6,6 +6,10 @@ use App\Models\Music\Album;
 use App\Services\Albums\Repositories\AlbumRepositoryInterface;
 use Illuminate\Support\Facades\Request;
 
+/**
+ * Class UpdateAlbumHandler
+ * @package App\Services\Albums\Handlers
+ */
 class UpdateAlbumHandler
 {
     /**
@@ -13,6 +17,10 @@ class UpdateAlbumHandler
      */
     private $albumRepository;
 
+    /**
+     * UpdateAlbumHandler constructor.
+     * @param AlbumRepositoryInterface $albumRepository
+     */
     public function __construct(
         AlbumRepositoryInterface $albumRepository
     )
@@ -20,7 +28,12 @@ class UpdateAlbumHandler
         $this->albumRepository = $albumRepository;
     }
 
-    public function handle(Album $album, array $data)
+    /**
+     * @param Album $album
+     * @param array $data
+     * @return Album
+     */
+    public function handle(Album $album, array $data): Album
     {
         if (!Request::file('cover')) {
             $data['cover'] = $album->cover;
@@ -30,6 +43,9 @@ class UpdateAlbumHandler
         return $this->albumRepository->updateFromArray($album, $data);
     }
 
+    /**
+     * @return string|null
+     */
     public function updateFile()
     {
         if (Request::hasFile('cover')) {

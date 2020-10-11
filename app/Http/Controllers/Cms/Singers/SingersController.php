@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Cms\Singers;
 use App\Http\Controllers\Cms\BaseController;
 use App\Http\Requests\Singer\StoreSingerRequest;
 use App\Http\Requests\Singer\UpdateSingerRequest;
-use App\Models\Music\Group;
 use App\Models\Music\Singer;
 use App\Services\Singers\SingersService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -61,7 +59,7 @@ class SingersController extends BaseController
     {
         $data = $request->getFormData();
         $store = $this->singersService->storeSinger($data);
-        if ($store) {
+        if (isset($store)) {
             return redirect()->route('cms.music.singers.create')
                 ->with(['success' => Auth::user()->name . ', исполнитель добавлен!']);
         } else {
@@ -75,7 +73,7 @@ class SingersController extends BaseController
      * Display the specified resource.
      *
      * @param Singer $singer
-     * @return Response
+     * @return void
      */
     public function show(Singer $singer)
     {
@@ -105,7 +103,7 @@ class SingersController extends BaseController
     {
         $data = $request->getFormData();
         $update = $this->singersService->updateSinger($singer, $data);
-        if ($update) {
+        if (isset($update)) {
             return redirect()->route('cms.music.singers.edit', $singer->id)
                 ->with(['success' => Auth::user()->name . ', исполнитель обновлен!']);
         } else {
@@ -124,7 +122,7 @@ class SingersController extends BaseController
     public function destroy($id)
     {
         $destroy = $this->singersService->destroySinger($id);
-        if ($destroy) {
+        if ($destroy == 1) {
             return redirect()->route('cms.music.singers.index')
                 ->with(['success' => Auth::user()->name . ', исполнитель удален!']);
         } else {

@@ -6,6 +6,10 @@ use App\Models\Music\Singer;
 use App\Services\Singers\Repositories\SingerRepositoryInterface;
 use Illuminate\Support\Facades\Request;
 
+/**
+ * Class UpdateSingerHandler
+ * @package App\Services\Singers\Handlers
+ */
 class UpdateSingerHandler
 {
     /**
@@ -13,6 +17,10 @@ class UpdateSingerHandler
      */
     private $singerRepository;
 
+    /**
+     * UpdateSingerHandler constructor.
+     * @param SingerRepositoryInterface $singerRepository
+     */
     public function __construct(
         SingerRepositoryInterface $singerRepository
     )
@@ -20,6 +28,11 @@ class UpdateSingerHandler
         $this->singerRepository = $singerRepository;
     }
 
+    /**
+     * @param Singer $singer
+     * @param array $data
+     * @return Singer
+     */
     public function handle(Singer $singer, array $data)
     {
         if (!Request::file('cover')) {
@@ -30,6 +43,9 @@ class UpdateSingerHandler
         return $this->singerRepository->updateFromArray($singer, $data);
     }
 
+    /**
+     * @return string|null
+     */
     public function updateFile()
     {
         if (Request::hasFile('cover')) {

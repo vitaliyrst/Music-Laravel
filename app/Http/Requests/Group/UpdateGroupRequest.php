@@ -3,8 +3,6 @@
 namespace App\Http\Requests\Group;
 
 use App\Http\Requests\BaseFormRequest;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 
 class UpdateGroupRequest extends BaseFormRequest
 {
@@ -32,4 +30,3 @@ class UpdateGroupRequest extends BaseFormRequest
         ];
     }
 }
-

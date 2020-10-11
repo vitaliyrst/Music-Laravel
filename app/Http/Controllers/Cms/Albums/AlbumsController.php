@@ -60,7 +60,7 @@ class AlbumsController extends BaseController
     {
         $data = $request->getFormData();
         $store = $this->albumsService->storeAlbum($data);
-        if ($store) {
+        if (isset($store)) {
             return redirect()->route('cms.music.albums.create')
                 ->with(['success' => Auth::user()->name . ', альбом добавлен!']);
         } else {
@@ -104,7 +104,7 @@ class AlbumsController extends BaseController
     {
         $data = $request->getFormData();
         $update = $this->albumsService->updateAlbum($album, $data);
-        if ($update) {
+        if (isset($update)) {
             return redirect()->route('cms.music.albums.edit', $album->id)
                 ->with(['success' => Auth::user()->name . ', альбом обновлен!']);
         } else {
@@ -123,7 +123,7 @@ class AlbumsController extends BaseController
     public function destroy($id)
     {
         $destroy = $this->albumsService->destroyAlbum($id);
-        if ($destroy) {
+        if ($destroy == 1) {
             return redirect()->route('cms.music.albums.index')
                 ->with(['success' => Auth::user()->name . ', альбом удален!']);
         } else {
