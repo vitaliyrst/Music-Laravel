@@ -23,7 +23,7 @@ class GroupFactory extends Factory
     public function definition()
     {
         $title = $this->faker->word . ' ' . $this->faker->name;
-        $cover3 = $this->faker->image('public/storage/group', 300,300);
+        $cover3 = $this->faker->image('public/storage/group', 100, 100);
         return [
             'title' => $title,
             'description' => $this->faker->sentence(200),

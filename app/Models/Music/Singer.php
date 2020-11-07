@@ -13,13 +13,9 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\Music\Singer
  *
- * @method static Builder|Singer newModelQuery()
- * @method static Builder|Singer newQuery()
- * @method static Builder|Singer query()
- * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property string $position
+ * @property string|null $position
  * @property string|null $description
  * @property string|null $cover
  * @property int $group_id
@@ -28,9 +24,12 @@ use Illuminate\Support\Carbon;
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Group $group
+ * @property-read \App\Models\Music\Group $group
  * @property-read User $user
  * @method static Builder|Singer findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Singer newModelQuery()
+ * @method static Builder|Singer newQuery()
+ * @method static Builder|Singer query()
  * @method static Builder|Singer whereCover($value)
  * @method static Builder|Singer whereCreatedAt($value)
  * @method static Builder|Singer whereCreatedUserId($value)
@@ -42,8 +41,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Singer wherePosition($value)
  * @method static Builder|Singer whereSlug($value)
  * @method static Builder|Singer whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
-
 class Singer extends Model
 {
     use HasFactory, Sluggable;

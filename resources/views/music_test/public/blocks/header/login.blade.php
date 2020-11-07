@@ -7,10 +7,12 @@
     </a>
 @endif
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{{ route('profile', \Illuminate\Support\Facades\Auth::user()->id) }}">
-        {{ __('Profile') }}
-    </a>
-    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+    @if (Auth::user())
+        <a class="dropdown-item" href="{{ route('profile', \Illuminate\Support\Facades\Auth::user()->id) }}">
+            {{ __('Profile') }}
+        </a>
+    @endif
+    <a class="dropdown-item" href="{{ route('logout') }}" onclick="e.preventDefault();
         document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
     </a>

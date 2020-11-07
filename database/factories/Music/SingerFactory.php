@@ -23,7 +23,7 @@ class SingerFactory extends Factory
     public function definition()
     {
         $name = $this->faker->name . ' ' . $this->faker->lastName;
-        $cover1 = $this->faker->image('public/storage/singer', 300, 300);
+        $cover1 = $this->faker->image('public/storage/singer', 100, 100);
         return [
             'name' => $name,
             'position' =>  $this->faker->randomElement(),

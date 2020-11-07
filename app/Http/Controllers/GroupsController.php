@@ -24,7 +24,6 @@ class GroupsController extends Controller
 
     public function index()
     {
-
         $groups = $this->groupRepository->search(3);
         return view('music_test.public.index', ['groups' => $groups]);
     }

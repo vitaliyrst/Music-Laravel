@@ -10,7 +10,7 @@ class ExchangeRatesController extends Controller
     public static function shareCourse()
     {
         return Cache::remember('course', 600, function () {
-            return Http::get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->json();
+            return Http::timeout(3)->get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->json();
         });
     }
 }

@@ -23,7 +23,7 @@ class AlbumFactory extends Factory
     public function definition()
     {
         $title = $this->faker->word . ' ' . $this->faker->word;
-        $cover2 = $this->faker->image('public/storage/album', 300,300);
+        $cover2 = $this->faker->image('public/storage/album', 100,100);
         return [
             'title' => $title,
             'description' => $this->faker->sentence(100),

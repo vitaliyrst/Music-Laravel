@@ -62,11 +62,15 @@
                 </table>
             </div>
         </div>
+        <form id="delete" method="POST">
+            @method('DELETE')
+            @csrf
+        </form>
     </div>
     <script>
         $(document).ready(function () {
             $('#group').on('change', function () {
-                var group_id = $(this).val();
+                let group_id = $(this).val();
                 if (group_id) {
                     $.ajax({
                         url: '/cms/ajax/album/' + group_id,
@@ -78,7 +82,7 @@
                             $.each(data, function (key, value) {
                                 $('select[id="album"]').append
                                 (
-                                    '<option value="' + value['id'] + '">' + value['title'] + '</option>'
+                                    `<option value="${value['id']}">${value['title']}</option>`
                                 )
                             });
                         }
@@ -86,7 +90,7 @@
                 }
             })
             $('#album').on('change', function () {
-                var album_id = $(this).val();
+                let album_id = $(this).val();
                 if (album_id) {
                     $.ajax({
                         url: '/cms/ajax/song/' + album_id,
@@ -96,20 +100,33 @@
                             console.log(data);
                             $('tbody[id="song"]').empty();
                             $.each(data, function (key, value) {
+
                                 $('tbody[id="song"]').append
                                 (
-                                    '<tr>' +
-                                    '<td>' + value['id'] + '</td>' +
-                                    '<td>' + value['title'] + '</td>' +
-                                    '<td>' + value['duration'] + '</td>' +
-                                    '<td>' + value['user']['name'] + '</td>' +
-                                    '<td>' + '<a class="text-dark" href="/cms/songs/' + value['id'] + '/edit">' +
-                                    '<img src="/storage/buttons/edit.png" class="edit-img">' + '</a>' +
-                                    '<button class="btn-1" form="delete">' +
-                                    '<img src="/storage/buttons/delete.png" class="edit-img">' + '</button>' +
-                                    '</td>' +
-                                    '</tr>'
+                                    `<tr>
+                                    <td>${value['id']}</td>
+                                    <td>${value['title']}</td>
+                                    <td>${value['duration']}</td>
+                                    <td>${value['user']['name']}</td>
+                                    <td><a class="text-dark" href="/cms/songs/${value['id']}/edit">
+                                    <img src="/storage/buttons/edit.png" class="edit-img"></a>
+                                    <button class="btn-1" form="delete" data-song="${value['id']}">
+                                    <img src="/storage/buttons/delete.png" class="edit-img"></button></td>
+                                    </tr>`
                                 );
+                                $(".btn-1").bind("mouseover", function () {
+                                    let getSong = ($(this).data('song'));
+                                    document.getElementById('delete').setAttribute('action', `/cms/songs/${getSong}`);
+
+                                });
+                                // const songButton = document.querySelector('.btn-1');
+                                // songButton.addEventListener('click', ({target}) => {
+                                //     const parent = target.closest('[data-song-id]');
+                                //     console
+                                //     e.target.classList.contains('')
+                                //     const getSongId = document.getElementById(value['id']);
+                                //     const getAttrId = getSongId.getAttribute('id');
+                                //     document.getElementById('delete').setAttribute('action', `/cms/songs/${getAttrId}`);
                             });
                         }
                     });

@@ -15,10 +15,6 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\Music\Group
  *
- * @method static Builder|Group newModelQuery()
- * @method static Builder|Group newQuery()
- * @method static Builder|Group query()
- * @mixin \Eloquent
  * @property int $id
  * @property string $title
  * @property string|null $description
@@ -27,12 +23,15 @@ use Illuminate\Support\Carbon;
  * @property string $slug
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection|Album[] $album
+ * @property-read Collection|\App\Models\Music\Album[] $album
  * @property-read int|null $album_count
- * @property-read Collection|Singer[] $singer
+ * @property-read Collection|\App\Models\Music\Singer[] $singer
  * @property-read int|null $singer_count
  * @property-read User $user
  * @method static Builder|Group findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Group newModelQuery()
+ * @method static Builder|Group newQuery()
+ * @method static Builder|Group query()
  * @method static Builder|Group whereCover($value)
  * @method static Builder|Group whereCreatedAt($value)
  * @method static Builder|Group whereCreatedUserId($value)
@@ -41,8 +40,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Group whereSlug($value)
  * @method static Builder|Group whereTitle($value)
  * @method static Builder|Group whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
-
 class Group extends Model
 {
     use HasFactory, Sluggable;

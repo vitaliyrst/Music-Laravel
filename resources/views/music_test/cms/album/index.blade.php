@@ -59,7 +59,7 @@
     <script>
         $(document).ready(function () {
             $('#group').on('change', function () {
-                var group_id = $(this).val();
+                let group_id = $(this).val();
                 if (group_id) {
                     $.ajax({
                         url: '/cms/ajax/album/' + group_id,
@@ -71,16 +71,14 @@
                             $.each(data, function (key, value) {
                                 $('tbody[id="album"]').append
                                 (
-                                    '<tr>' +
-                                    '<td>' + value['id'] + '</td>' +
-                                    '<td>' + value['title'] + '</td>' +
-                                    '<td>' + value['user']['name'] + '</td>' +
-                                    '<td>' + '<a class="text-dark" href="/cms/albums/' + value['id'] + '/edit">' +
-                                    '<img src="/storage/buttons/edit.png" class="edit-img">' + '</a>' +
-                                    '<button class="btn-1" form="delete">' +
-                                    '<img src="/storage/buttons/delete.png" class="edit-img">' + '</button>' +
-                                    '</td>' +
-                                    '</tr>'
+                                    `<tr><td> ${value['id']} </td>` +
+                                    `<td> ${value['title']} </td>` +
+                                    `<td> ${value['user']['name']} </td>` +
+                                    `<td><a class="text-dark" href="/cms/albums/${value['id']}/edit">
+                                        <img src="/storage/buttons/edit.png" class="edit-img"></a>
+                                        <button class="btn-1" form="delete">
+                                        <img src="/storage/buttons/delete.png" class="edit-img">
+                                        </button></td></tr>`
                                 );
                             });
                         }
